@@ -87,9 +87,9 @@ export default function ProductsView({currentView, setCurrentView}){
     }
     // DELETE PRODUCT
     function deleteProduct(item){
-        const filtered = currentProducts.filter((x)=>x.name !== item.name);
+        const filtered = products.filter((x)=>x.name !== item.name);
         products = filtered;
-        setCurrentProducts(filtered);
+        filterProducts(search);
         setSuccessMessage("Product Erased");
     }
      return (
@@ -98,9 +98,10 @@ export default function ProductsView({currentView, setCurrentView}){
             <div style={styles.productGrid}>
                 <div style={styles.sbWrapper}>
                     <h1 style={styles.sbHeader}>Products</h1>
-                    <input onChange={(e)=>{filterProducts(e.target.value)}} placeholder="Search For Keywords" style={styles.customInput} />
+                    <input value={search} onChange={(e)=>{setSearch(e.target.value);filterProducts(e.target.value)}} placeholder="Search For Keywords" style={styles.customInput} />
                 </div>
-                <table cellspacing="0" style={styles.tableBody}>
+                {currentProducts.length > 0 && (
+                    <table cellspacing="0" style={styles.tableBody}>
                     <tbody>
                         <tr>
                             <th style={styles.tableHeader}>Name</th>
@@ -121,6 +122,10 @@ export default function ProductsView({currentView, setCurrentView}){
                         })}
                     </tbody>
                 </table>
+                )}
+                {currentProducts.length === 0 && (
+                    <div style={styles.productFormTitle}>No Products Available!</div>
+                )}
             </div>
             <div style={styles.productFormContainer}>
                 <div style={styles.productFormWrapper}>
