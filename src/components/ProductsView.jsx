@@ -134,10 +134,10 @@ export default function ProductsView({currentView, setCurrentView}){
                     <input value={name} onChange={(e)=>{setName(e.target.value)}} style={styles.formInput} placeholder="Name"/>
                     <input value={price} onChange={(e)=>{setPrice(e.target.value)}} style={styles.formInput} placeholder="Price"/>
                     {!editingOn && (
-                        <button onClick={()=>addProduct()} style={styles.formButton}>Create</button>
+                        <button disabled={!name && !price?true:false} onClick={()=>addProduct()} style={styles.formButton}>Create</button>
                     )}
                     {editingOn && (
-                        <button onClick={()=>editProduct()} style={styles.formButton}>Save</button>
+                        <button disabled={!name && !price?true:false} onClick={()=>editProduct()} style={styles.formButton}>Save</button>
                     )}
                     {errorMessage.length > 0 && (
                         <div style={styles.error}>{errorMessage}</div>
