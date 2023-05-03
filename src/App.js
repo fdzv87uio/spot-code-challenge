@@ -1,25 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
+import CustomHeader from './components/CustomHeader';
+import { useState } from 'react';
+import ProductsView from './components/ProductsView';
+import HomeView from './components/HomeView';
+import CustomFooter from './components/CustomFooter';
 
 function App() {
+  const [currentView, setCurrentView] = useState("home");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div style={styles.appContainer}>
+      <CustomHeader currentView={currentView} setCurrentView={setCurrentView}  />
+      <div style={styles.contentWrapper}>
+      {currentView === "home" && (
+          <HomeView />
+        )}
+        {currentView === "products" && (
+          <ProductsView currentView={currentView} setCurrentView={setCurrentView}  />
+        )}
+      </div>
+      <CustomFooter />
     </div>
+    </>
   );
+}
+
+const styles = {
+  appContainer:{
+    width:"100%",
+    height:"auto",
+    position:"relative",
+    overflowX:"hidden",
+  },
+  contentWrapper:{
+    position:"relative",
+    top:"70px",
+  }
 }
 
 export default App;
