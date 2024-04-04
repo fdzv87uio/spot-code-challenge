@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
 
-var products = [
-  { id: "0001", name: "Apples", price: "USD 2" },
-  { id: "0002", name: "Ananas", price: "USD 5" },
-  { id: "0003", name: "Bananas", price: "USD 5" },
-  { id: "0004", name: "Cocoa", price: "USD 7" },
-  { id: "0005", name: "Cramberries", price: "USD 5" },
-  { id: "0006", name: "Dafodils", price: "USD 8" },
-  { id: "0007", name: "Dandelions", price: "USD 10" },
-];
-
 export default function ProductsView() {
   const [search, setSearch] = useState("");
   const [currentProducts, setCurrentProducts] = useState();
