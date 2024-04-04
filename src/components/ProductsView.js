@@ -36,8 +36,10 @@ export default function ProductsView() {
           setCurrentProducts(result);
           setFetchedProducts(result);
         });
+    } else {
+      console.log(currentProducts);
     }
-  }, [currentProducts]);
+  }, [currentProducts, setCurrentProducts]);
 
   useEffect(() => {
     if (errorMessage.length > 0 || successMessage.length > 0) {
@@ -113,15 +115,14 @@ export default function ProductsView() {
   }
   // DELETE PRODUCT
   function deleteProduct(item) {
-    const filtered = fetchedProducts.filter((x) => x.title !== item.title);
+    const filtered = currentProducts.filter((x) => x.title !== item.title);
     setCurrentProducts(filtered);
     setFetchedProducts(filtered);
-    filterProducts(search);
     setSuccessMessage("Product Erased");
   }
   return (
     <>
-      {currentProducts && currentProducts.length > 0 && (
+      {currentProducts && (
         <div style={styles.viewContainer}>
           <div style={styles.productGrid}>
             <div style={styles.sbWrapper}>
